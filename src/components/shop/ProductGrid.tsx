@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { MOCK_PRODUCTS, CATEGORY_MAP } from "@/lib/mockProducts";
 
@@ -15,14 +15,32 @@ export default function ProductGrid() {
     "all" | "beans" | "goods"
   >("all");
   const [searchInput, setSearchInput] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState(MOCK_PRODUCTS);
 
-  // 카테고리 필터링 로직
-  const filteredProducts =
-    selectedCategory === "all"
-      ? MOCK_PRODUCTS
-      : MOCK_PRODUCTS.filter(
-          (product) => product.category === selectedCategory,
-        );
+  // debounce 적용 필터링 로직
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // 검색어와 카테고리로 동시에 필터링
+      const results = MOCK_PRODUCTS.filter((product) => {
+        // 검색어 필터링 (상품명, 대소문자 구분 안 함)
+        const matchesSearch = product.name
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+
+        // 카테고리 필터링
+        const matchesCategory =
+          selectedCategory === "all" || product.category === selectedCategory;
+
+        // 둘 다 만족해야 포함
+        return matchesSearch && matchesCategory;
+      });
+
+      setFilteredProducts(results);
+    }, 300); // 300ms debounce
+
+    // 클린업: 새로운 입력이 들어오면 이전 timer 취소
+    return () => clearTimeout(timer);
+  }, [searchInput, selectedCategory]);
 
   return (
     <section>
