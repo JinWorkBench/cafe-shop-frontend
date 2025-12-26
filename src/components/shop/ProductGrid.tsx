@@ -14,6 +14,7 @@ export default function ProductGrid() {
   const [selectedCategory, setSelectedCategory] = useState<
     "all" | "beans" | "goods"
   >("all");
+  const [searchInput, setSearchInput] = useState("");
 
   // 카테고리 필터링 로직
   const filteredProducts =
@@ -25,6 +26,17 @@ export default function ProductGrid() {
 
   return (
     <section>
+      {/* 검색 입력 필드 */}
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="상품명으로 검색..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)} // 입력값 업데이트
+          className="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800"
+        />
+      </div>
+
       {/* 카테고리 필터 버튼 */}
       <div className="mb-6 flex gap-3">
         {FILTER_OPTIONS.map((option) => (
