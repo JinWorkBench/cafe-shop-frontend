@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import { MOCK_PRODUCTS } from "@/lib/mockProducts";
 
 export default function ProductGrid() {
   return (
@@ -12,10 +13,10 @@ export default function ProductGrid() {
 
       {/* 그리드 컨테이너 */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {/* 카드 */}
+        {MOCK_PRODUCTS.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
     </section>
   );
