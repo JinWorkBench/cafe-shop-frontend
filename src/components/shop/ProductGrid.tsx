@@ -7,7 +7,11 @@ export default function ProductGrid() {
       {/* 상품 수 표시 */}
       <div className="mb-6">
         <p className="text-slate-400">
-          총 <span className="text-slate-600 font-semibold">4</span>개의 상품
+          총{" "}
+          <span className="text-slate-600 font-semibold">
+            {MOCK_PRODUCTS.length}
+          </span>
+          개의 상품
         </p>
       </div>
 
