@@ -86,9 +86,15 @@ export default function ProductGrid() {
       {/* 그리드 컨테이너 */}
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8">
         {/* 카드 */}
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-12">
+            <p className="text-slate-500 text-sm">검색 결과가 없습니다.</p>
+          </div>
+        )}
       </div>
     </section>
   );
