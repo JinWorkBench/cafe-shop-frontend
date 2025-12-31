@@ -1,45 +1,4 @@
-export type CategoryType = keyof typeof CATEGORY_MAP;
-export type TagType = keyof typeof TAG_MAP;
-
-// 카테고리 매핑
-export const CATEGORY_MAP = {
-  beans: "원두",
-  goods: "굿즈",
-} as const;
-
-// 배지 매핑
-export const TAG_MAP = {
-  freeShipping: "무료배송",
-  coupon: "쿠폰",
-  newProduct: "신상품",
-  limitedTime: "한정판",
-  hotSale: "인기상품",
-} as const;
-
-// 상품 리스트 정보
-export interface Product {
-  id: string;
-  modelName: string;
-  name: string;
-  brand: string;
-  category: CategoryType;
-
-  // 가격 정보
-  originalPrice: number;
-  discountPrice: number;
-  isDiscounted: boolean;
-
-  // 상품 상태
-  inStock: boolean;
-  image: string;
-
-  // 평가 정보
-  rating: number;
-  reviewCount: number;
-
-  // 배지 정보
-  tags?: TagType[];
-}
+import { Product } from "@/types/product";
 
 export const MOCK_PRODUCTS: Product[] = [
   {
