@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { MOCK_PRODUCTS, CATEGORY_MAP } from "@/lib/mockProducts";
+import { MOCK_PRODUCTS } from "@/lib/mockProducts";
+import { CATEGORY_MAP } from "@/constants";
 
 const FILTER_OPTIONS = [
   { key: "all", label: "전체" },

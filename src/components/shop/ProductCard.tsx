@@ -1,5 +1,5 @@
-import type { Product } from "@/lib/mockProducts";
-import { CATEGORY_MAP, TAG_MAP } from "@/lib/mockProducts";
+import type { Product } from "@/types/product";
+import { CATEGORY_MAP, TAG_MAP } from "@/constants";
 import Image from "next/image";
 
 interface ProductCardProps {
